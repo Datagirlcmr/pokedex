@@ -1,41 +1,52 @@
-let pokemonList = [];
-pokemonList[0] = {
-  name: "Bulbusaur",
-  height: 0.7,
-  types: ["grass", "poison"],
-};
-pokemonList[1] = {
-  name: "Charmander",
-  height: 1.3,
-  types: ["grass", "poison"],
-};
-pokemonList[2] = {
-  name: "Ivysaur",
-  height: 0.3,
-  types: ["grass", "poison"],
-};
+let pokemonRepository = (function () {
+  let pokemonList = [];
+  pokemonList[0] = {
+    name: "Bulbusaur",
+    height: 0.7,
+    types: ["grass", "poison"],
+  };
+  pokemonList[1] = {
+    name: "Charmander",
+    height: 1.3,
+    types: ["grass", "poison"],
+  };
+  pokemonList[2] = {
+    name: "Ivysaur",
+    height: 0.3,
+    types: ["grass", "poison"],
+  };
 
-pokemonList.forEach((pokemon) => {
-  document.write(`${pokemon.name} (Height: ${pokemon.height}) <br>`);
-});
+  let add = function (pokemon) {
+    if (typeof pokemon !== "object") {
+      alert("Pokemon added should be in the form of an object");
+    } else if (!("name" in pokemon) || !("height" in pokemon)) {
+      alert(
+        "Pokemon characters must be added with their name and height details"
+      );
+    } else {
+      pokemonList.push(pokemon);
+    }
+  };
 
-// let pokemonRepository = (function () {
-//     let pokemonList = []; // empty array
+  let getAll = function () {
+    pokemonList.forEach((pokemon) => {
+      document.write(`${pokemon.name} (Height: ${pokemon.height}) <br>`);
+    });
+  };
 
-//     let add = function (pokemon) {
-//       pokemonList.push(pokemon);
-//     };
+  let filter = function (query) {
+    return pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+  };
 
-//     let getAll = function () {
-//       return pokemonList;
-//     };
+  return {
+    add: add,
+    getAll: getAll,
+    filter: filter,
+  };
+})();
 
-//     return {
-//       add: add,
-//       getAll: getAll,
-//     };
-//   })();
-
-//   console.log(pokemonRepository.getAll()); // []
-//   pokemonRepository.add({ name: "Pikachu" });
-//   console.log(pokemonRepository.getAll()); // [ { name: 'Pikachu' } ]
+pokemonRepository.add({ name: "Pikachu", height: 0.6 });
+pokemonRepository.getAll();
+console.log( pokemonRepository.filter('char'));
