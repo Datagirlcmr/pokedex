@@ -1,0 +1,12 @@
+.button {
+    color: white;
+    background-color: #e4046b;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 20px;
+    margin: 20px;
+}
+
+ul li {
+    list-style: none;
+}
