@@ -1,37 +1,36 @@
 let pokemonRepository = (function () {
-  let pokemonList = [];
-  pokemonList[0] = {
-    name: "Bulbusaur",
+  let pokemonList = [{
+    name: "Bulbasaur",
     height: 0.7,
     types: ["grass", "poison"],
-  };
-  pokemonList[1] = {
-    name: "Charmander",
-    height: 1.3,
-    types: ["grass", "poison"],
-  };
-  pokemonList[2] = {
-    name: "Ivysaur",
-    height: 0.3,
-    types: ["grass", "poison"],
-  };
+  },
+  {
+    name: "Charizard",
+    height: 1.7,
+    types: ["fire", "flying"],
+  },
+  {
+    name: "Squirtle",
+    height: 1,
+    types: ["water"],
+  },
+];
 
-  let add = function (pokemon) {
-    if (typeof pokemon !== "object") {
-      alert("Pokemon added should be in the form of an object");
-    } else if (!("name" in pokemon) || !("height" in pokemon)) {
-      alert(
-        "Pokemon characters must be added with their name and height details"
-      );
-    } else {
-      pokemonList.push(pokemon);
-    }
-  };
+function add(pokemon) {
+  if (
+    typeof pokemon === "object" &&
+    "name" in pokemon &&
+    "height" in pokemon &&
+    "types" in pokemon
+  ) {
+    pokemonList.push(pokemon);
+  } else {
+    console.log("pokemon is not correct");
+  }
+}
 
   let getAll = function () {
-    pokemonList.forEach((pokemon) => {
-      addListItem(pokemon);
-    });
+    return pokemonList
   };
 
   let addListItem = function (pokemon) {
@@ -42,7 +41,12 @@ let pokemonRepository = (function () {
     button.classList.add("button");
     listItems.appendChild(button);
     list.appendChild(listItems);
+    button.addEventListener("click", ()=>{console.log(pokemon)});
   };
+
+  // function showDetails (pokemon) {
+  //   console.log(pokemon);
+  // };
 
   let filter = function (query) {
     return pokemonList.filter((pokemon) =>
@@ -58,6 +62,8 @@ let pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.add({ name: "Pikachu", height: 0.6 });
-pokemonRepository.getAll();
-console.log(pokemonRepository.filter("char"));
+pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
