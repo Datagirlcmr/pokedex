@@ -1,12 +1,18 @@
 .button {
-    color: white;
-    width: 300px;
-    background-color: #e4046b;
-    border: 1px solid black;
-    padding: 20px;
-    margin: 20px;
+  color: white;
+  width: 30%;
+  background-color: #e4046b;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px;
 }
 
 ul li {
-    list-style: none;
+  list-style: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .button {
+    width: 70%;
+  }
 }
