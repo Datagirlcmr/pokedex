@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Pokedex</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <ul class="pokemon-list"></ul>
 
-    <ul class='pokemon-list'></ul>
+    <form id="register-form">
+      <div class="input-wrapper">
+        <label for="email">E-mail</label>
+        <input id="email" />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+      </div>
+
+      <button>Register</button>
+    </form>
+
     <script src="./js/promise-polyfill.js"></script>
     <script src="./js/fetch-polyfill.js"></script>
     <script src="./js/script.js"></script>
-</body>
-
+  </body>
 </html>
