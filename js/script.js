@@ -1,20 +1,6 @@
 let pokemonRepository = (function () {
-  let pokemonList = [{
-    name: "Bulbasaur",
-    height: 0.7,
-    types: ["grass", "poison"],
-  },
-  {
-    name: "Charizard",
-    height: 1.7,
-    types: ["fire", "flying"],
-  },
-  {
-    name: "Squirtle",
-    height: 1,
-    types: ["water"],
-  },
-];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 function add(pokemon) {
   if (
@@ -54,20 +40,37 @@ function add(pokemon) {
     );
   };
 
+  let loadList = function() {
+    return fetch(apiUrl).then(function(response){
+      response.json().then(function(json){
+        json.results.forEach(character => {
+          let pokemon = {
+            name: character.name,
+            detailsUrl: character.url
+          }
+          add (pokemon)
+        });
+      })
+    }).catch(function(error){
+      console.log(error)
+    })
+   }
+
+  let loadDetails = function() {  }
+
   return {
     add: add,
     getAll: getAll,
     filter: filter,
     addListItem: addListItem,
+    loadList: loadList
   };
 })();
 
-pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
+pokemonRepository.loadList().then(function(){
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
+})
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon);
-});
 
-let jsonStringFromServer = '{"name":"Lisa","age":27}';
-let lisa = JSON.parse(jsonStringFromServer);
-console.log(lisa.name, lisa.age);
