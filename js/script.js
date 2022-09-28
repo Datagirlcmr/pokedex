@@ -67,3 +67,7 @@ pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
 });
+
+let jsonStringFromServer = '{"name":"Lisa","age":27}';
+let lisa = JSON.parse(jsonStringFromServer);
+console.log(lisa.name, lisa.age);
